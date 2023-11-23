@@ -4,18 +4,18 @@ function Testimonials() {
     const [category, setCategory] = useState(1)
     const [currentIndex, setCurrentIndex] = useState(0);
     const items2 = document.querySelector('.items2')
+    const thisx = document.querySelector('.this')
 
     const goToNext = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex === 3 ? 0 : (prevIndex + 1)
+            prevIndex === 5 ? 0 : (prevIndex + 1)
         );
-        console.log(items2.clientWidth / 6);
     };
 
     const goToPrev = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? 4 - 1 : (prevIndex - 1)
-        );
+            prevIndex === 0 ? 6 - 1 : (prevIndex - 1)
+        )
     };
 
     return (
@@ -40,13 +40,18 @@ function Testimonials() {
             </div>
 
             <div className="slide">
-                <button onClick={goToPrev} className='arrow'>
+                <button onClick={goToPrev} className='arrow arrowleft'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <path d="M21.5833 14H7M7 14L14 7M7 14L14 21" stroke="#CAFF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
                 <div className="itemsCont">
-                    <div style={items2 ? { transform: `translateX(-${currentIndex * (items2.clientWidth / 6)}px)` } : null} className="items2">
+                    <div
+                        style={items2 && thisx ?
+                            window.innerWidth > 450 ?
+                            { transform: `translateX(-${currentIndex * (items2.clientWidth / 6)}px)` }
+                            : { transform: `translateX(-${currentIndex * items2.clientWidth}px)` }
+                            : null} className="items2">
                         <div className="element this">
                             <div className="top">
                                 <div className="line"></div>
@@ -165,11 +170,20 @@ function Testimonials() {
                     <div className="left"></div>
                     <div className="right"></div>
                 </div>
-                <button onClick={goToNext} className='arrow'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <path d="M6.99968 14H21.583M21.583 14L14.583 7M21.583 14L14.583 21" stroke="#CAFF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
+                {/* <div className="leftS"></div>
+                        <div className="rightS"></div> */}
+                <div className="buttons">
+                    <button onClick={goToPrev} className='arrow arrowleft2'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M21.5833 14H7M7 14L14 7M7 14L14 21" stroke="#CAFF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button onClick={goToNext} className='arrow'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                            <path d="M6.99968 14H21.583M21.583 14L14.583 7M21.583 14L14.583 21" stroke="#CAFF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     )

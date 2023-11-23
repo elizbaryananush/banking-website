@@ -101,7 +101,7 @@ function Cases() {
                     <button>Learn More</button>
                 </div>
 
-                <div className="percentSection">
+                <div className="percentSection percent1">
                     <div className="text">
                         <h4>For Business</h4>
                         <p> For businesses, we empower growth with working capital solutions that optimize cash flow, and our tailored financing options fuel business expansion. Whatever your financial aspirations, YourBank is committed to providing the right tools and support to achieve them</p>
@@ -172,6 +172,30 @@ function Cases() {
                         </div>
                         <p>Payment Solutions</p>
                     </div>
+                </div>
+
+                <div className="percentSection percent2">
+                    <div className="text">
+                        <h4>For Business</h4>
+                        <p> For businesses, we empower growth with working capital solutions that optimize cash flow, and our tailored financing options fuel business expansion. Whatever your financial aspirations, YourBank is committed to providing the right tools and support to achieve them</p>
+                    </div>
+                    <div className="percent">
+                        <div className="element">
+                            <h3>65%</h3>
+                            <p>Cash Flow Management</p>
+                        </div>
+                        <div className="line"></div>
+                        <div className="element">
+                            <h3>70%</h3>
+                            <p>Drive Business Expansion</p>
+                        </div>
+                        <div className="line"></div>
+                        <div className="element">
+                            <h3>45%</h3>
+                            <p>Streamline payroll processing</p>
+                        </div>
+                    </div>
+                    <button>Learn More</button>
                 </div>
             </div>
         </div>
