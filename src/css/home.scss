@@ -8,11 +8,11 @@
     }
 }
 
-@media (min-width:1440px) {
+@media (max-width:1440px) {
     body {
-        --fonts: 16px;
-        --fontm: 18px;
-        --fontl: 24px;
+        --fonts: 14px;
+        --fontm: 16px;
+        --fontl: 20px;
     }
 }
 
@@ -2756,16 +2756,6 @@
                 border-radius: 82px;
                 background: var(--green-60, #CAFF33);
             }
-        }
-
-        // .Products,
-        // .Cases,
-        // .Features,
-        // .Questions,
-        // .Testimonials,
-        // .Cta,
-        .olidfjkgj {
-            display: none !important;
         }
     }
 }

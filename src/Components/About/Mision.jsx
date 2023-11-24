@@ -22,13 +22,17 @@ function Mision() {
                     </div>
                 </div>
                 <div className="horiz">
-                    <div className="text">
+                    <div className="text text1">
                         <h4>Vision</h4>
                         <p>Our vision at YourBank is to redefine banking by creating a seamless and personalized experience for our customers. We envision a future where banking is accessible, transparent, and tailored to individual preferences. Through continuous innovation and collaboration, we strive to be at the forefront of the industry, setting new standards for customer-centric banking. Our vision is to be the preferred financial institution, known for our unwavering commitment to excellence, trust, and customer satisfaction.</p>
                     </div>
                     <div className="imgDiv">
                         <img className='design' src={design} alt="" />
                         <img className='image' src={image2} alt="" />
+                    </div>
+                    <div className="text text2">
+                        <h4>Vision</h4>
+                        <p>Our vision at YourBank is to redefine banking by creating a seamless and personalized experience for our customers. We envision a future where banking is accessible, transparent, and tailored to individual preferences. Through continuous innovation and collaboration, we strive to be at the forefront of the industry, setting new standards for customer-centric banking. Our vision is to be the preferred financial institution, known for our unwavering commitment to excellence, trust, and customer satisfaction.</p>
                     </div>
                 </div>
             </div>

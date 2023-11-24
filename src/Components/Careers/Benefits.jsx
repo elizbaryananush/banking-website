@@ -9,8 +9,8 @@ function Benefits() {
             </div>
             <div className="bottom">
                 <div className="horiz">
+                    
                     <div className="item">
-
                         <div className="top">
                             <div className="round">
                                 <div className="round2">

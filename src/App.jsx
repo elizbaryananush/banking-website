@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Router >
-        <div style={buttons ? {backdropFilter: 'blur(8px)' , position:'fixed'} : null} className='Navbar'>
+        <div style={buttons ? { backdropFilter: 'blur(8px)', position: 'fixed' } : null} className='Navbar'>
           <div className="Logo">
             <div className="logo">
               <svg className='icon' width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,21 +58,29 @@ function App() {
               </svg>
             </button>
           </div>
-          <ul style={buttons  ? null : { display: 'none' }} className="list">
+          <ul style={buttons ? null : { display: 'none' }} className="list">
             <li
-              onClick={() => setPage(1)}
+              onClick={() => {
+                setPage(1)
+              }}
               className={page === 1 ? 'Active' : ''}
             >Home</li>
             <li
-              onClick={() => setPage(2)}
+              onClick={() => {
+                setPage(2)
+              }}
               className={page === 2 ? 'Active' : ''}
             >Careers</li>
             <li
-              onClick={() => setPage(3)}
+              onClick={() => {
+                setPage(3)
+              }}
               className={page === 3 ? 'Active' : ''}
             >About</li>
             <li
-              onClick={() => setPage(4)}
+              onClick={() => {
+                setPage(4)
+              }}
               className={page === 4 ? 'Active' : ''}
             >Security</li>
           </ul>
@@ -83,10 +91,10 @@ function App() {
         </div>
         <Routes>
           <Route path='/' element={
-            page === 1 ? <Home /> :
+            page === 4 ? <Home /> :
               page === 2 ? <Careers /> :
                 page === 3 ? <About /> :
-                  page === 4 ? <Security /> : null} />
+                  page === 1 ? <Security /> : null} />
         </Routes>
         <Footer />
       </Router>
