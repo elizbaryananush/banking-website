@@ -29,11 +29,11 @@
             display: flex;
             width: 90%;
             display: flex;
-            padding: 60px 180px 60px 0;
+            padding: 60px 130px 60px 0;
             margin-left: 50%;
             transform: translateX(-50%);
             margin-top: 158px;
-            gap: 10%;
+            gap: 14%;
             position: relative;
 
             .leftCont {
@@ -141,6 +141,10 @@
                 border: 0.689px solid #262626;
                 background-blend-mode: normal, screen, normal;
                 background: linear-gradient(215deg, rgba(26, 26, 26, 0.00) 0%, #1A1A1A 39.72%), #1A1A1A;
+
+                * {
+                    text-transform: capitalize;
+                }
 
                 .top {
                     height: 200px;
@@ -451,7 +455,7 @@
                 position: absolute;
                 right: -0px;
                 top: 54px;
-                // z-index: -1;
+                z-index: -1;
             }
         }
 
@@ -660,7 +664,7 @@
                     max-width: 100%;
                 }
 
-                .percent2{
+                .percent2 {
                     display: none !important;
                 }
 
