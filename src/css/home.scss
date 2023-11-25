@@ -29,11 +29,11 @@
             display: flex;
             width: 90%;
             display: flex;
-            padding: 60px 200px 60px 0;
+            padding: 60px 180px 60px 0;
             margin-left: 50%;
             transform: translateX(-50%);
             margin-top: 158px;
-            gap: 8%;
+            gap: 10%;
             position: relative;
 
             .leftCont {
@@ -449,9 +449,9 @@
 
             .design {
                 position: absolute;
-                right: 69px;
+                right: -0px;
                 top: 54px;
-                z-index: -1;
+                // z-index: -1;
             }
         }
 

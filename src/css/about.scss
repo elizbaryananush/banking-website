@@ -98,6 +98,10 @@
             gap: 80px;
             margin: 120px auto;
 
+            .text2{
+                display: none !important;
+            }
+
             .heading {
                 display: flex;
                 flex-direction: column;

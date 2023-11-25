@@ -9,15 +9,22 @@ import About from './Pages/About';
 import Security from './Pages/Security';
 
 function App() {
-  const [page, setPage] = useState(1)
-  const [size, setSize] = useState()
-  const [buttons, setButtons] = useState(true)
-  const width = window.innerWidth
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(window.innerWidth);
+  const [buttons, setButtons] = useState(true);
 
   useEffect(() => {
-    setSize(window.innerWidth > 450 ? true : false)
-    console.log(window.innerWidth);
-  }, [window.innerWidth])
+    const handleResize = () => {
+      setSize(window.innerWidth);
+      setButtons(window.innerWidth > 450);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -58,7 +65,7 @@ function App() {
               </svg>
             </button>
           </div>
-          <ul style={buttons ? null : { display: 'none' }} className="list">
+          <ul style={size > 450 ? null : !buttons ? {display : 'none'} : null} className="list">
             <li
               onClick={() => {
                 setPage(1)

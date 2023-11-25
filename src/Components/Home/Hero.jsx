@@ -144,8 +144,8 @@ function Hero() {
                             </svg>
                     </div>
                 </div>
-            <img className='design' src={design} alt="" />
             </div>
+            <img className='design' src={design} alt="" />
         </div>
     )
 }
