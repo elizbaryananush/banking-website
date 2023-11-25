@@ -1,13 +1,62 @@
-import React from 'react'
+import React, { useEffect, useRef, useState  } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Questions() {
+    const text = useRef()
+    const bottom = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setSize(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(bottom.current, {
+                opacity: -3,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: bottom.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Questions'>
-            <div className="heading">
+            <div ref={text} className="heading">
                 <h1><span>Frequently</span> Asked Questions</h1>
                 <p>Still you have any questions? Contact our Team via support@yourbank.com</p>
             </div>
-            <div className="bottom">
+            <div ref={bottom} className="bottom">
                 <div className="grid">
                     <div className="element">
                         <h4>How do I open an account with YourBank?</h4>
@@ -29,7 +78,7 @@ function Questions() {
                         <div className="line"></div>
                         <p>At YourBank, we prioritize the security of your transactions and personal information. We employ industry-leading encryption and multi-factor authentication to ensure that your data is protected. Additionally, we regularly update our security measures to stay ahead of emerging threats. You can bank with confidence knowing that we have robust security systems in place.</p>
                     </div>
-                <div className="linear"></div>
+                    <div className="linear"></div>
                 </div>
                 <button>Load All FAQ’s
                     <span>

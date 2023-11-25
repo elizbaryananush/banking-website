@@ -1,17 +1,110 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Protect() {
+    const text = useRef()
+    const itemRefs = [useRef(null), useRef(null), useRef(null), useRef(null)]
+    const [size, setSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
+    useEffect(() => {
+
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-100%',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[0].current, {
+                translateY: '-100px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[0].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    markers: true,
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[1].current, {
+                translateY: '-100px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[0].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    markers: true,
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[2].current, {
+                translateY: '-100px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[2].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    markers: true,
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[3].current, {
+                translateY: '-100px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[2].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    markers: true,
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Protect'>
-            <div className="heading">
+            <div ref={text} className="heading">
                 <h1>How We <span>Protect You</span></h1>
                 <p>At YourBank, we prioritize the security and confidentiality of your financial information. Our state-of-the-art encryption technology and stringent data protection measures ensure your assets and transactions are safeguarded at all times</p>
             </div>
             <div className="bottom">
                 <div className="box"></div>
                 <div className="cont">
-
-                    <div className="item">
+                    <div ref={itemRefs[0]} className="item">
                         <div className="top">
                             <div className="round">
                                 <div className="round2">
@@ -27,7 +120,7 @@ function Protect() {
                         </div>
                         <p>Our online banking platform is built with multiple layers of security to safeguard your information. We utilize industry-standard encryption protocols to ensure that your data remains confidential and protected during transmission.</p>
                     </div>
-                    <div className="item">
+                    <div ref={itemRefs[1]} className="item">
                         <div className="top">
                             <div className="round">
                                 <div className="round2">
@@ -42,7 +135,7 @@ function Protect() {
                         </div>
                         <p>To enhance the security of your online banking experience, we employ multi-factor authentication. This additional layer of security requires you to provide multiple pieces of identification, such as a password and a one-time verification code, to access your account.</p>
                     </div>
-                    <div className="item">
+                    <div ref={itemRefs[2]} className="item">
                         <div className="top">
                             <div className="round">
                                 <div className="round2">
@@ -57,7 +150,7 @@ function Protect() {
                         </div>
                         <p>We have sophisticated fraud detection systems in place to monitor your accounts for any suspicious activities. Our dedicated team works around the clock to detect and prevent unauthorized transactions, providing you with peace of mind.</p>
                     </div>
-                    <div className="item">
+                    <div ref={itemRefs[3]} className="item">
                         <div className="top">
                             <div className="round">
                                 <div className="round2">

@@ -1,15 +1,80 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Products() {
     const [category, setCategory] = useState(1)
+    const text = useRef()
+    const buttons = useRef()
+    const bottom = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setSize(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+  
+
+    useEffect(() => {
+
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(buttons.current, {
+                translateX: '500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: buttons.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(bottom.current, {
+                opacity: -3,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: bottom.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Products'>
             <div className="top">
-                <div className="text">
+                <div ref={text} className="text">
                     <h1 className="header">Our <span>Products</span></h1>
                     <p>Discover a range of comprehensive and customizable banking products at YourBank, designed to suit your unique financial needs and aspirations</p>
                 </div>
-                <div className="buttons">
+                <div ref={buttons} className="buttons">
                     <ul className="inside">
                         <li
                             onClick={() => setCategory(1)}
@@ -22,7 +87,7 @@ function Products() {
                     </ul>
                 </div>
             </div>
-            <div className="bottom">
+            <div ref={bottom} className="bottom">
                 <div className="item">
                     <div className="round">
                         <div className="round2">

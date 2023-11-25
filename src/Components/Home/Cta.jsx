@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import img from '../../assets/Abstract Design (1).png'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Cta() {
+    const text = useRef()
+
+    useEffect(() => {
+        gsap.from(text.current, {
+            opacity: -3,
+            duration: 1,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: text.current,
+              start: 'top center', 
+              end: 'bottom center', 
+              toggleActions: 'play none none none', 
+            },
+          });
+    } , [])
     return (
-        <div className='Cta'>
+        <div ref={text} className='Cta'>
             <img src={img} alt="" />
             <div className="text">
                 <h1>Start your financial journey with <span>YourBank today!</span></h1>

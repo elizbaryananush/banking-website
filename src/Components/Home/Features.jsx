@@ -1,15 +1,78 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Features() {
     const [category, setCategory] = useState(1)
+    const text = useRef()
+    const bottom = useRef()
+    const left = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setSize(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(bottom.current, {
+                opacity: -3,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: bottom.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(left.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: left.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Features'>
-            <div className="heading">
+            <div ref={text} className="heading">
                 <h1>Our <span>Features</span></h1>
                 <p>Experience a host of powerful features at YourBank, including seamless online banking, secure transactions, and personalized financial insights, all designed to enhance your banking experience</p>
             </div>
             <div className="bottom">
-                <div className="left">
+                <div ref={left} className="left">
                     <button
                         onClick={() => setCategory(1)}
                         className={category === 1 ? 'category active' : 'category'}
@@ -23,7 +86,7 @@ function Features() {
                         className={category === 3 ? 'category active' : 'category'}
                     >Customer Support</button>
                 </div>
-                <div className="right">
+                <div ref={bottom} className="right">
                     <div className="element">
                         <div className="top">
                             <p>24/7 Account Access</p>

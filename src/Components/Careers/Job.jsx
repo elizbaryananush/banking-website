@@ -1,14 +1,93 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Job() {
+    const text = useRef()
+    const itemRefs = [useRef(null), useRef(null), useRef(null)]
+    const [size, setSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
+    useEffect(() => {
+
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-100%',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[0].current, {
+                translateX: '-200px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[0].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[1].current, {
+                translateX: '-200px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                delay: 0.5,
+                scrollTrigger: {
+                    trigger: itemRefs[0].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(itemRefs[2].current, {
+                translateX: '-200px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: itemRefs[0].current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Job'>
-            <div className="heading">
+            <div ref={text} className="heading">
                 <h1>Job Openings</h1>
                 <p>Explore exciting job openings at YourBank, where we value talent, innovation, and a passion for customer service. Join our team and be part of shaping a brighter future in the banking industry</p>
             </div>
             <div className="grid">
-                <div className="item">
+                <div ref={itemRefs[0]} className="item">
                     <div className="head">
                         <h4>Relationship Manager</h4>
                         <div className="info">
@@ -55,7 +134,7 @@ function Job() {
                     </div>
                     <button>Apply Now</button>
                 </div>
-                <div className="item">
+                <div ref={itemRefs[1]} className="item">
                     <div className="head">
                         <h4>Risk Analyst</h4>
                         <div className="info">
@@ -102,7 +181,7 @@ function Job() {
                     </div>
                     <button>Apply Now</button>
                 </div>
-                <div className="item">
+                <div ref={itemRefs[2]} className="item">
                     <div className="head">
                         <h4>IT Security Specialist</h4>
                         <div className="info">

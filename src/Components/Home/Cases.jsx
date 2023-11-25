@@ -1,15 +1,104 @@
+import { useRef, useEffect, useState } from 'react'
 import React from 'react'
 import design from '../../assets/Abstract Design (1).png'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Cases() {
+    const text = useRef()
+    const left = useRef()
+    const left2 = useRef()
+    const right = useRef()
+    const right2 = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setSize(window.innerWidth);
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
+
+    useEffect(() => {
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(left.current, {
+                translateX: '-120%',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: left.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(left2.current, {
+                translateX: '-120%',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: left2.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(right.current, {
+                translateX: '120%',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: right.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(right2.current, {
+                translateX: '120%',
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: right2.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Cases'>
-            <div className="header">
+            <div ref={text} className="header">
                 <h1>Use Cases</h1>
                 <p>At YourBank, we cater to the diverse needs of individuals and businesses alike, offering a wide range of financial solutions</p>
             </div>
             <div className="bottom">
-                <div className="iconSection">
+                <div ref={left} className="iconSection">
                     <img src={design} alt="" />
                     <div className="item">
                         <div className="round">
@@ -77,7 +166,7 @@ function Cases() {
                     </div>
                 </div>
 
-                <div className="percentSection">
+                <div ref={right} className="percentSection">
                     <div className="text">
                         <h4>For Individuals</h4>
                         <p>For individuals, our mortgage services pave the way to homeownership, and our flexible personal loans provide vital support during various life milestones. We also prioritize retirement planning, ensuring a financially secure future for our customers</p>
@@ -101,7 +190,7 @@ function Cases() {
                     <button>Learn More</button>
                 </div>
 
-                <div className="percentSection percent1">
+                <div ref={left2} className="percentSection percent1">
                     <div className="text">
                         <h4>For Business</h4>
                         <p> For businesses, we empower growth with working capital solutions that optimize cash flow, and our tailored financing options fuel business expansion. Whatever your financial aspirations, YourBank is committed to providing the right tools and support to achieve them</p>
@@ -125,7 +214,7 @@ function Cases() {
                     <button>Learn More</button>
                 </div>
 
-                <div className="iconSection">
+                <div ref={right2} className="iconSection">
                     <img src={design} alt="" />
                     <div className="item">
                         <div className="round">

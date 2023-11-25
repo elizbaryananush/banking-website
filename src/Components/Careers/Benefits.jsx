@@ -1,13 +1,65 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Benefits() {
+    const text = useRef()
+    const bottom = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
+    useEffect(() => {
+
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(bottom.current, {
+                // translateX: '500px',
+                opacity: -3,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: bottom.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+
+    }, [])
     return (
         <div className='Benefits'>
-            <div className="heading">
+            <div ref={text} className="heading">
                 <h1>Our <span>Benefits</span></h1>
                 <p>At YourBank, we value our employees and are dedicated to their well-being and success. We offer a comprehensive range of benefits designed to support their personal and professional growth.</p>
             </div>
-            <div className="bottom">
+            <div ref={bottom} className="bottom">
                 <div className="horiz">
                     
                     <div className="item">

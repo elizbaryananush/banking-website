@@ -1,10 +1,72 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Testimonials() {
     const [category, setCategory] = useState(1)
     const [currentIndex, setCurrentIndex] = useState(0);
     const items2 = document.querySelector('.items2')
     const thisx = document.querySelector('.this')
+    const text = useRef()
+    const buttons = useRef()
+    const bottom = useRef()
+    const [size, setSize] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);       
+
+    useEffect(() => {
+        if (size > 450) {
+            gsap.from(text.current, {
+                translateX: '-500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: text.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(buttons.current, {
+                translateX: '500px',
+                opacity: 0,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: buttons.current,
+                    start: 'top center',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            gsap.from(bottom.current, {
+                opacity: -3,
+                duration: 1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: bottom.current,
+                    start: 'top 60%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none none',
+                },
+            });
+        }
+    }, [])
 
     const goToNext = () => {
         setCurrentIndex((prevIndex) =>
@@ -21,11 +83,11 @@ function Testimonials() {
     return (
         <div className='Testimonials'>
             <div className="heading">
-                <div className="text">
+                <div ref={text} className="text">
                     <h1>Our <span>Testimonials</span></h1>
                     <p>Discover how YourBank has transformed lives with innovative digital solutions and personalized customer service. See why our clients trust us for a secure and prosperous financial journey</p>
                 </div>
-                <div className="buttons">
+                <div ref={buttons} className="buttons">
                     <ul className="inside">
                         <li
                             onClick={() => setCategory(1)}
@@ -39,7 +101,7 @@ function Testimonials() {
                 </div>
             </div>
 
-            <div className="slide">
+            <div ref={bottom} className="slide">
                 <button onClick={goToPrev} className='arrow arrowleft'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                         <path d="M21.5833 14H7M7 14L14 7M7 14L14 21" stroke="#CAFF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -49,8 +111,8 @@ function Testimonials() {
                     <div
                         style={items2 && thisx ?
                             window.innerWidth > 450 ?
-                            { transform: `translateX(-${currentIndex * (items2.clientWidth / 6)}px)` }
-                            : { transform: `translateX(-${currentIndex * items2.clientWidth}px)` }
+                                { transform: `translateX(-${currentIndex * (items2.clientWidth / 6)}px)` }
+                                : { transform: `translateX(-${currentIndex * items2.clientWidth}px)` }
                             : null} className="items2">
                         <div className="element this">
                             <div className="top">

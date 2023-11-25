@@ -69,24 +69,40 @@ function App() {
             <li
               onClick={() => {
                 setPage(1)
+                window.scrollTo({
+                  top: 0,
+                  // behavior: 'smooth', // Use smooth scrolling for a nicer effect
+                });
               }}
               className={page === 1 ? 'Active' : ''}
             >Home</li>
             <li
               onClick={() => {
                 setPage(2)
+                window.scrollTo({
+                  top: 0,
+                  // behavior: 'smooth', // Use smooth scrolling for a nicer effect
+                });
               }}
               className={page === 2 ? 'Active' : ''}
             >Careers</li>
             <li
               onClick={() => {
                 setPage(3)
+                window.scrollTo({
+                  top: 0,
+                  // behavior: 'smooth', // Use smooth scrolling for a nicer effect
+                });
               }}
               className={page === 3 ? 'Active' : ''}
             >About</li>
             <li
               onClick={() => {
                 setPage(4)
+                window.scrollTo({
+                  top: 0,
+                  // behavior: 'smooth', // Use smooth scrolling for a nicer effect
+                });
               }}
               className={page === 4 ? 'Active' : ''}
             >Security</li>
@@ -98,10 +114,10 @@ function App() {
         </div>
         <Routes>
           <Route path='/' element={
-            page === 1 ? <Home /> :
+            page === 4 ? <Home size={size} /> :
               page === 2 ? <Careers /> :
                 page === 3 ? <About /> :
-                  page === 4 ? <Security /> : null} />
+                  page === 1 ? <Security /> : null} />
         </Routes>
         <Footer />
       </Router>
