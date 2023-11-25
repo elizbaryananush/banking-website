@@ -35,6 +35,10 @@
             background: var(--grey-11, #1C1C1C);
             height: 653px;
 
+            .image1{
+                display: none;
+            }
+
             .textCont {
                 display: flex;
                 width: 658px;
