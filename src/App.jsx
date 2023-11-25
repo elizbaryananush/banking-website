@@ -114,10 +114,10 @@ function App() {
         </div>
         <Routes>
           <Route path='/' element={
-            page === 4 ? <Home size={size} /> :
+            page === 1 ? <Home size={size} /> :
               page === 2 ? <Careers /> :
                 page === 3 ? <About /> :
-                  page === 1 ? <Security /> : null} />
+                  page === 4 ? <Security /> : null} />
         </Routes>
         <Footer />
       </Router>
