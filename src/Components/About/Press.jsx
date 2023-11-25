@@ -50,7 +50,6 @@ function Press() {
                     trigger: itemRefs[0].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -65,7 +64,6 @@ function Press() {
                     trigger: itemRefs[1].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -79,7 +77,6 @@ function Press() {
                     trigger: itemRefs[1].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -94,7 +91,6 @@ function Press() {
                     trigger: itemRefs[0].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });

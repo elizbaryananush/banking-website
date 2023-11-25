@@ -46,7 +46,6 @@ function Protect() {
                     trigger: itemRefs[0].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -60,7 +59,6 @@ function Protect() {
                     trigger: itemRefs[0].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -74,7 +72,6 @@ function Protect() {
                     trigger: itemRefs[2].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
@@ -88,7 +85,6 @@ function Protect() {
                     trigger: itemRefs[2].current,
                     start: 'top center',
                     end: 'bottom center',
-                    markers: true,
                     toggleActions: 'play none none none',
                 },
             });
